@@ -38,6 +38,26 @@ public class MyListener extends langBaseListener {
     }
 
     @Override
+    public void exitMul(langParser.MulContext ctx) {
+        String variableName = ctx.ID(0).getText();
+        int value = ctx.ID().size() > 1 ?
+                variables.get(ctx.ID(1).getText()) :
+                Integer.parseInt(ctx.NUM().getText());
+        variables.put(variableName, variables.get(variableName) * value);
+    }
+
+    @Override
+    public void exitDiv(langParser.DivContext ctx) {
+        String variableName = ctx.ID(0).getText();
+        int value = ctx.ID().size() > 1 ?
+                variables.get(ctx.ID(1).getText()) :
+                Integer.parseInt(ctx.NUM().getText());
+        if (value == 0)
+            throw new ArithmeticException("/ by zero");
+        variables.put(variableName, variables.get(variableName) / value);
+    }
+
+    @Override
     public void exitPrint(langParser.PrintContext ctx) {
         String output = ctx.ID() == null ? ctx.NUM().getText():
                 variables.get(ctx.ID().getText()).toString();

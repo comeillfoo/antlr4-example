@@ -4,4 +4,9 @@ begin
 	add a to b
 	print b
 	print 10
+	sub 10 from a
+	print a
+	mul a by b
+	print a
+	div b by a
 end

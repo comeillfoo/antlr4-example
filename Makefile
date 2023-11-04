@@ -51,6 +51,7 @@ grammar:
 
 clean_build:
 	rm -rf $(BUILD_D)
+	rm -f $(TARGET)
 
 clean_source:
 	rm -f $(SRC_D)/*.interp $(SRC_D)/*.tokens $(addsuffix *.java,$(basename $(LANG_GRAMMAR)))
