@@ -1,5 +1,7 @@
 lib/*
 src/*
+build
+*.jar
 !src/*.lang
 !src/MyListener.java
 !src/*.g4

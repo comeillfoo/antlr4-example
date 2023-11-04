@@ -44,9 +44,20 @@ public class MyListener extends langBaseListener {
         System.out.println(output);
     }
 
-    public static void main(String[] args){
+    private static void usage() {
+        System.out.println(String.format("Usage: java -jar JAR FILE"));
+        System.out.println("\tJAR  - java-archive you're using");
+        System.out.println("\tFILE - file to interpret");
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            usage();
+            return;
+        }
+
         try {
-            org.antlr.v4.runtime.CharStream input = CharStreams.fromFileName("D:\\Antlr\\Project 1\\lang1\\src\\test.lang");
+            org.antlr.v4.runtime.CharStream input = CharStreams.fromFileName(args[0]);
             langLexer lexer = new langLexer(input);
             langParser parser = new langParser(new CommonTokenStream(lexer));
             parser.addParseListener(new MyListener());
